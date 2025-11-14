@@ -44,6 +44,7 @@ RUN rm -rf /tmp/* /var/tmp/*
 
 # Install the project (ensure that frontend projects have been built prior to this step).
 FROM python_libs_bfrs
+COPY --chown=oim:oim  python-cron ./
 COPY gunicorn.ini manage.py ./
 COPY bfrs_api_wrapper ./bfrs_api_wrapper
 # NOTE: we can't currently run the collectstatic step due to how BFRS is written.

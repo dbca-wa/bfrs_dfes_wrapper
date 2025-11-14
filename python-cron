@@ -1,0 +1,1 @@
+10 9 * * * python /app/manage.py appmonitor_check >> /app/logs/appmonitor_client.log 2>&1
