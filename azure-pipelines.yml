@@ -27,8 +27,8 @@ stages:
         command: buildAndPush
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: | 
-              bfrs_dfes_wrapper_latest
-              bfrs_dfes_wrapper_$(tagDate)
+              latest
+              $(tagDate)
         containerRegistry: DockerGitHub
         repository: ghcr.io/dbca-wa/bfrs_dfes_wrapper
     - task: Docker@2
