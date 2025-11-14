@@ -37,10 +37,6 @@ RUN virtualenv -p python3 /app/venv
 ENV PATH=/app/venv/bin:$PATH
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
-  # Update the Django <1.11 bug in django/contrib/gis/geos/libgeos.py
-  # Reference: https://stackoverflow.com/questions/18643998/geodjango-geosexception-error
-  # && sed -i -e "s/ver = geos_version().decode()/ver = geos_version().decode().split(' ')[0]/" /usr/local/lib/python2.7/dist-packages/django/contrib/gis/geos/libgeos.py \
-RUN rm -rf /tmp/* /var/tmp/*
 
 # Install the project (ensure that frontend projects have been built prior to this step).
 FROM python_libs_bfrs
