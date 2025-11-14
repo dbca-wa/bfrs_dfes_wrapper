@@ -42,6 +42,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 FROM python_libs_bfrs
 COPY --chown=oim:oim  python-cron ./
 COPY --chown=oim:oim  startup.sh ./
+RUN chmod 755 /startup.sh
 COPY gunicorn.ini manage.py ./
 COPY bfrs_api_wrapper ./bfrs_api_wrapper
 # NOTE: we can't currently run the collectstatic step due to how BFRS is written.
