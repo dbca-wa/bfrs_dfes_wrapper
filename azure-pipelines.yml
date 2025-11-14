@@ -29,8 +29,8 @@ stages:
         tags: | 
               bfrs_dfes_wrapper_latest
               bfrs_dfes_wrapper_$(tagDate)
-        containerRegistry: DockerHub
-        repository: dbcawa/bfrs
+        containerRegistry: DockerGitHub
+        repository: ghcr.io/dbca-wa/bfrs_dfes_wrapper
     - task: Docker@2
       displayName: Dev Build image and Push
       inputs:
@@ -39,5 +39,5 @@ stages:
         tags: | 
               bfrs_dfes_wrapper_dev_latest
               bfrs_dfes_wrapper_dev_$(tagDate)              
-        containerRegistry: DockerHub
-        repository: dbcawa/docker_app_dev    
+        containerRegistry: DockerGitHub
+        repository: ghcr.io/dbca-wa/docker_app_dev   
