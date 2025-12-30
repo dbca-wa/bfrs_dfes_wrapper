@@ -16,6 +16,7 @@ RUN apt-get clean
 RUN apt-get update
 RUN apt-get upgrade -y
 
+
 # RUN apt-get install --no-install-recommends -y wget git libmagic-dev gcc binutils libproj-dev gdal-bin
 # RUN apt-get install --no-install-recommends -y python3 python3-setuptools python3-dev python3-pip tzdata virtualenv
 # RUN apt-get install --no-install-recommends -y gcc bzip2 build-essential libpq-dev
@@ -36,6 +37,7 @@ USER oim
 RUN virtualenv -p python3 /app/venv
 ENV PATH=/app/venv/bin:$PATH
 COPY requirements.txt ./
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Install the project (ensure that frontend projects have been built prior to this step).
@@ -55,3 +57,4 @@ EXPOSE 8080
 HEALTHCHECK --interval=1m --timeout=5s --start-period=10s --retries=3 CMD ["wget", "-q", "-O", "-", "http://localhost:8080/"]
 CMD ["/startup.sh"]
 #CMD ["gunicorn", "bfrs_api_wrapper.wsgi", "--bind", ":8080", "--config", "gunicorn.ini"]
+
