@@ -1,5 +1,4 @@
-FROM ubuntu:26.04 as builder_base_bfrs
-# FROM ghcr.io/dbca-wa/docker-apps-dev:ubuntu_2604_base_python as builder_base_bfrs
+FROM ghcr.io/dbca-wa/docker-apps-dev:ubuntu_2604_base_python as builder_base_bfrs
 ARG IMAGE_TAG
 ARG IMAGE_NAME
 # FROM ghcr.io/dbca-wa/docker-apps-dev:ubuntu_2404_base_python as builder_base_bfrs
@@ -22,23 +21,6 @@ ENV SMS_POSTFIX="sms.url.endpoint"
 RUN apt-get clean
 RUN apt-get update
 RUN apt-get upgrade -y
-
-################
-RUN apt-get install software-properties-common -y
-RUN add-apt-repository ppa:deadsnakes/ppa || true
-RUN apt-get update
-RUN apt-get install --no-install-recommends -y \
-    curl wget git libmagic-dev gcc binutils libproj-dev gdal-bin \
-    python3 python3-venv python3-dev tzdata postgresql-client \
-    build-essential libpq-dev patch libreoffice bzip2 unzip jq \
-    graphviz libgraphviz-dev pkg-config sqlite3 python3-virtualenv
-
-RUN ln -s /usr/bin/python3 /usr/bin/python || true
-
-RUN wget https://raw.githubusercontent.com/dbca-wa/wagov_utils/main/wagov_utils/bin/default_script_installer.sh -O /tmp/default_script_installer.sh \
-    && chmod 755 /tmp/default_script_installer.sh \
-    && /tmp/default_script_installer.sh
-################
 
 # RUN apt-get install --no-install-recommends -y wget git libmagic-dev gcc binutils libproj-dev gdal-bin
 # RUN apt-get install --no-install-recommends -y python3 python3-setuptools python3-dev python3-pip tzdata virtualenv
