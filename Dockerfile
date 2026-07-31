@@ -1,8 +1,7 @@
-# Dockerfile to build BFRS application images.
-# Prepare the base environment.
+FROM ghcr.io/dbca-wa/docker-apps-dev:ubuntu_2604_base_python as builder_base_bfrs
 ARG IMAGE_TAG
 ARG IMAGE_NAME
-FROM ghcr.io/dbca-wa/docker-apps-dev:ubuntu_2404_base_python as builder_base_bfrs
+# FROM ghcr.io/dbca-wa/docker-apps-dev:ubuntu_2404_base_python as builder_base_bfrs
 ARG IMAGE_TAG
 ARG IMAGE_NAME
 RUN echo "Building version: $IMAGE_TAG for $IMAGE_NAME"
@@ -22,7 +21,6 @@ ENV SMS_POSTFIX="sms.url.endpoint"
 RUN apt-get clean
 RUN apt-get update
 RUN apt-get upgrade -y
-
 
 # RUN apt-get install --no-install-recommends -y wget git libmagic-dev gcc binutils libproj-dev gdal-bin
 # RUN apt-get install --no-install-recommends -y python3 python3-setuptools python3-dev python3-pip tzdata virtualenv
