@@ -31,7 +31,7 @@ RUN apt-get upgrade -y
 RUN groupadd -g 5000 oim 
 RUN useradd -g 5000 -u 5000 oim -s /bin/bash -d /app
 RUN mkdir /app 
-RUN chown -R oim.oim /app 
+RUN chown -R oim:oim /app 
 
 ENV TZ=Australia/Perth
 
@@ -39,7 +39,8 @@ ENV TZ=Australia/Perth
 FROM builder_base_bfrs as python_libs_bfrs
 WORKDIR /app
 USER oim
-RUN virtualenv -p python3 /app/venv
+# RUN virtualenv -p python3 /app/venv
+RUN python3 -m venv /app/venv
 ENV PATH=/app/venv/bin:$PATH
 COPY requirements.txt ./
 RUN pip install --upgrade pip
